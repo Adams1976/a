@@ -1,6 +1,6 @@
 import "./style.css";
 
-const apiKey = '29491ae9fb390e232123848b96d3d307';
+const apiKey = process  .env.API_KEY;
 const weatherIcon = document.querySelector('.weather-image i');
 const searchInput = document.querySelector('.search-box input');
 const searchButton = document.querySelector('.search-box button');
