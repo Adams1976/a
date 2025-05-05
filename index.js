@@ -1,4 +1,4 @@
-import "./style.css"
+import "./style.css";
 
 const apiKey = '29491ae9fb390e232123848b96d3d307';
 const weatherIcon = document.querySelector('.weather-image i');
@@ -9,21 +9,21 @@ const error = document.querySelector('.error');
 
 // Функция для обращения к API
 async function fetchWeatherData(city) {
-    const apiUrl = `http://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${city}&aqi=no`;
+    const apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${apiKey}`;
     const response = await fetch(apiUrl);
     if (!response.ok) {
         throw new Error('Город не найден');
     }
     return await response.json();
 }
-console.log('fasdas')
+
 // Функция для обработки данных
 function processWeatherData(data) {
-    const location = data.location.name;
-    const temp = Math.round(data.current.temp_c);
-    const humidity = data.current.humidity;
-    const wind = data.current.wind_kph;
-    const condition = data.current.condition.text.toLowerCase();
+    const location = data.name;
+    const temp = Math.round(data.main.temp);
+    const humidity = data.main.humidity;
+    const wind = data.wind.speed;
+    const condition = data.weather[0].description.toLowerCase();
 
     return { city: location, temperature: temp, humidity, windSpeed: wind, condition };
 }
@@ -35,27 +35,26 @@ function displayWeather(data) {
     document.querySelector('.humidity').innerHTML = `${data.humidity}%`;
     document.querySelector('.wind').innerHTML = `${data.windSpeed} km/h`;
 
-    if (data.condition.includes('clear')) {
-        weatherIcon.className = "fa-solid fa-sun";
-    } else if (data.condition.includes('rain')) {
-        weatherIcon.className = "fa-solid fa-cloud-rain";
-    } else if (data.condition.includes('mist')) {
-        weatherIcon.className = "fa-solid fa-smog";
-    } else if (data.condition.includes('drizzle')) {
-        weatherIcon.className = "fa-solid fa-cloud-rain";
-    } else {
-        weatherIcon.className = "fa-solid fa-cloud";
-    }
+    const conditionIcons = {
+        clear: "fa-solid fa-sun",
+        rain: "fa-solid fa-cloud-rain",
+        mist: "fa-solid fa-smog",
+        drizzle: "fa-solid fa-cloud-rain",
+        default: "fa-solid fa-cloud",
+    };
+
+    const conditionKey = Object.keys(conditionIcons).find(key => data.condition.includes(key)) || "default";
+    weatherIcon.className = conditionIcons[conditionKey];
 
     weather.style.display = "block";
     error.style.display = "none";
 }
 
-// функция для обработки ввода пользователя
+// Функция для обработки ввода пользователя
 async function checkWeather(city) {
     try {
-        error.style.display = "none"; 
-        weather.style.display = "none"; 
+        error.style.display = "none";
+        weather.style.display = "none";
         const rawData = await fetchWeatherData(city);
         console.log(rawData);
         const weatherData = processWeatherData(rawData);
@@ -74,7 +73,7 @@ searchButton.addEventListener('click', async () => {
 });
 
 searchInput.addEventListener('keydown', async (e) => {
-    if (e.keyCode === 13) {
+    if (e.key === 'Enter') {
         await checkWeather(searchInput.value);
         searchInput.value = '';
     }
