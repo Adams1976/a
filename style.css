@@ -1,0 +1,125 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    outline: none;
+    border: 0;
+}
+
+body{
+    background-color:#06283d;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+}
+header {
+    margin-bottom: 100px;
+    text-align: center;
+    height: 150px;
+    padding: 50px 0px;
+    font-size: 35px;
+    font-weight: bolder;
+    color: #06283d;
+    background-color: rgb(154, 206, 252);
+    }
+main {
+    height: 100vh;
+    display: flex; 
+    align-items: center; 
+    justify-content: center;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    margin-top: -200px; 
+}
+
+.container{
+    background-color: white;
+    width: 500px;
+    height: auto;
+    padding: 28px 32px;
+    overflow: hidden;
+    border-radius: 18px;
+  
+}
+
+.search-box {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: #06283d;
+    position: relative;
+}
+
+.search-box input {
+    color: #06283d;
+    width: 80%;
+    font-size: 22px;
+    font-weight: 400;
+    text-transform: uppercase;
+    padding-left: 32px;
+}
+
+.search-box input::placeholder {
+    color: #06283d;
+    font-weight: 400;
+    font-size: 20px;
+    text-transform: capitalize;
+}
+
+.search-box button {
+    cursor: pointer;
+    width: 50px;
+    height: 50px;
+    background-color: aliceblue;
+    border-radius: 50%;
+    font-size: 22px;
+}
+
+.search-box button {
+    color: white;
+    background-color: #06283d;
+    transition: .5s;
+}
+.search-box button:hover{
+    background-color: rgb(105, 178, 241);
+}
+.fa-location-dot {
+    position: absolute;
+    color: #06283d;
+    font-size: 28px;
+}
+
+.weather{
+    margin-top: 30px;
+    text-align: center;
+    display: none;
+}
+
+.weather h1{
+    font-style: 80px;
+    font-weight: 700;
+}
+.weather h2 {
+    font-style: 55px;
+    font-weight: 500;
+    margin-top: 20px;
+}
+.deatils {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.deatils i {
+    font-size: 50px;
+}
+.deatils p {
+    font-size: 20px;
+}
+.weather-image i {
+    font-size: 120px;
+}
+.error {
+    color: red;
+    font-size: 19px;
+    margin-top: 20px;
+    margin-left: 10px;
+    display: none;
+}
