@@ -1,6 +1,6 @@
 import "./style.css"
 
-const apiKey = '34589fbcee9b461bb07142804250305';
+const apiKey = '29491ae9fb390e232123848b96d3d307';
 const weatherIcon = document.querySelector('.weather-image i');
 const searchInput = document.querySelector('.search-box input');
 const searchButton = document.querySelector('.search-box button');
@@ -16,7 +16,7 @@ async function fetchWeatherData(city) {
     }
     return await response.json();
 }
-
+console.log('fasdas')
 // Функция для обработки данных
 function processWeatherData(data) {
     const location = data.location.name;
